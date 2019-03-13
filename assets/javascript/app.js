@@ -1,6 +1,8 @@
 $(document).ready(function() {
+  //array of comicbook heroes
   var heroArray = ["Thor", "Green Lantern", "The Flash", "Batman"];
 
+  ///function to grab data from API and post onto the page
   function displayHero() {
     var hero = $(this).attr("data-name");
     var queryURL =
@@ -13,9 +15,9 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       console.log(response.data);
-
+      ///variable that calls the giphy API data
       var heroData = response.data;
-
+      ///For Loop that loops through the API data and post what is wanted
       for (var i = 0; i < heroData.length; i++) {
         var gifContainer = $("<div>").addClass("hero-img");
 
@@ -33,7 +35,7 @@ $(document).ready(function() {
       }
     });
   }
-
+  ///function to create hero search buttons
   function createButtons() {
     $("#hero-btn-view").empty();
 
@@ -60,7 +62,6 @@ $(document).ready(function() {
 
     createButtons();
   });
-
   $(document).on("click", ".hero-btn", displayHero);
 
   createButtons();
